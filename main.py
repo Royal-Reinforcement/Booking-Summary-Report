@@ -112,7 +112,7 @@ if upload_file is not None:
 
         st.divider()
 
-        unit_selection = st.selectbox('Select a unit to see its booking detail:', options=['Select a unit'] + cf['Unit_Code'].sort_values().unique().tolist())
+        unit_selection = st.selectbox('Select a unit to see its booking detail:', options=['Select a unit'] + cf[cf['Reason'].notna()]['Unit_Code'].sort_values().unique().tolist())
 
         if unit_selection != 'Select a unit':
             cf_unit = cf[cf['Unit_Code'] == unit_selection].copy()
