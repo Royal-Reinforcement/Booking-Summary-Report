@@ -4,7 +4,7 @@ import pandas as pd
 
 APP_NAME = 'Booking Summary Report'
 
-st.set_page_config(page_title=APP_NAME, page_icon='', layout='centered')
+st.set_page_config(page_title=APP_NAME, page_icon='📚', layout='centered')
 
 st.image(st.secrets['images']["rr_logo"], width=100)
 
@@ -44,7 +44,6 @@ if upload_file is not None:
     with tabs[0]:
         st.header('📖 Bookings')
         l, lm, rm, r = st.columns(4)
-    
         l.metric('Total', len(cf), len(cf) - len(pf))
         lm.metric('Reservations', cf[cf['Booking_Number'].str.contains('BKG')].shape[0], cf[cf['Booking_Number'].str.contains('BKG')].shape[0] - pf[pf['Booking_Number'].str.contains('BKG')].shape[0])
         rm.metric('Holds', cf[cf['Booking_Number'].str.contains('HLD')].shape[0], cf[cf['Booking_Number'].str.contains('HLD')].shape[0] - pf[pf['Booking_Number'].str.contains('HLD')].shape[0], delta_color='inverse')
@@ -112,7 +111,6 @@ if upload_file is not None:
         st.dataframe(unit_reasons, use_container_width=True, hide_index=True)
 
         st.divider()
-
 
         unit_selection = st.selectbox('Select a unit to see its booking detail:', options=['Select a unit'] + cf['Unit_Code'].sort_values().unique().tolist())
 
